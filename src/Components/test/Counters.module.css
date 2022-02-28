@@ -1,0 +1,16 @@
+.container {
+    background-color: beige;
+    padding: 2rem;
+    border-radius: 1rem;
+    text-align: center;
+    font-family: sans-serif;
+    font-weight: bold;
+}
+.container__btn {
+    margin:1rem 1rem 0rem 1rem;
+    width: 120px;
+    height: 40px;
+    border-radius: 1rem;
+    font-size: 1rem;
+    color: rgb(93, 41, 236);
+}

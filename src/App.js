@@ -1,75 +1,108 @@
-import Product from "./Components/Products/Products";
 import React, { useState } from "react";
-import HookCounter from "./Components/HookCounter";
-import HookObject from "./Components/HookObject";
-import HookArray from "./Components/HookArray";
-
-// class App extends React.Component {
-//   state = {
-//     product: [
-//       { title: "book 1", price: "200$" },
-//       { title: "book 2", price: "400$" },
-//       { title: "book 3", price: "125$" },
-//     ],
-//   };
-
-//   clickHandler = () => {
-//     console.log("click shood");
-//     this.setState({
-//       product: [
-//         { title: "book 1", price: "555$" },
-//         { title: "book 2", price: "555$" },
-//         { title: "book 3", price: "555$" },
-//       ],
-//     });
-//   };
-//   render() {
-//     return (
-//       <div>
-//         <h3> MILADY </h3>
-
-//         {this.state.product.map((item) => {
-//           return <Product name={item.title} price={item.price} />;
-//         })}
-//         <p>code 0001</p>
-//         <button onClick={this.clickHandler}>Change Price</button>
-//       </div>
-//     );
-//   }
-// }
-
+import "./App.css";
+import Navbar from "./Components/Products/Navbar";
+import ProductList from "./Components/Products/ProductList";
 const App = () => {
-  // const [products, setProducts] = useState([
-  //   { title: "book 1", price: "200$" },
-  //   { title: "book 2", price: "400$" },
-  //   { title: "book 3", price: "125$" },
-  // ]);
+  const [products, setProducts] = useState({
+    list: [
+      { title: "Book 1", price: "230$", id: "100", quantity: 1 },
+      { title: "Book 2", price: "301$", id: "101", quantity: 1 },
+      { title: "Book 3", price: "364$", id: "102", quantity: 1 },
+      { title: "Book 4", price: "452$", id: "103", quantity: 1 },
+    ],
+  });
 
-  // const clickHandler = () => {
-  //   setProducts([
-  //     { title: "book 5", price: "260$" },
-  //     { title: "book 6", price: "460$" },
-  //     { title: "book 7", price: "165$" },
-  //   ]);
-  // };
+  const inputHandler = (e, id) => {
+    console.log(e.target.value + id);
+    const findTitle = products.list.find((item) => {
+      return item.id === id;
+    });
+    findTitle.title = e.target.value;
+    console.log(findTitle);
+
+    setProducts({ ...products, findTitle });
+  };
+  const addProductHandler = (id) => {
+    const findQuantity = products.list.find((item) => {
+      return item.id === id;
+    });
+    findQuantity.quantity++;
+    setProducts({ ...products, findQuantity });
+  };
+  const minusProductHandler = (id) => {
+    const findQuantity = products.list.find((item) => {
+      return item.id === id;
+    });
+
+    if (findQuantity.quantity > 1) {
+      findQuantity.quantity--;
+      setProducts({ ...products, findQuantity });
+    } else {
+      const filterProducts = products.list.filter((item) => {
+        return item.id !== id;
+      });
+      console.log(filterProducts);
+      setProducts({ list: filterProducts });
+    }
+  };
+
+  const productsDeleteHandler = (id) => {
+    const filterProducts = products.list.filter((item) => {
+      return item.id !== id;
+    });
+    console.log(filterProducts);
+    setProducts({ list: filterProducts });
+  };
+
   return (
-    <div>
-      <h3> MILADY </h3>
-      <HookCounter />
-      <br />
-      <hr />
-      <HookObject />
-      <hr />
-      <Product Email="Milad.rastgoou@gmail.com" />
-      <HookArray />
-      {/* 
-      {products.map((item) => {
-        return <Product name={item.title} price={item.price} />;
-      })}
-      <p>code 0001</p>
-      <button onClick={clickHandler}>Change Price</button> */}
+    <div className="container">
+      <Navbar count={products.list.length} />
+      <ProductList
+        FinalProducts={products.list}
+        key={products.list.id}
+        title={products.list.title}
+        price={products.list.price}
+        quantity={products.list.quantity}
+        inputHandler={inputHandler}
+        addProductHandler={addProductHandler}
+        minusProductHandler={minusProductHandler}
+        productsDeleteHandler={productsDeleteHandler}
+      />
     </div>
   );
 };
 
 export default App;
+
+// // ******** Counters - ShowName and .... *********
+// import React, { Component } from "react";
+// import "./App.css";
+// import ProductList from "./Components/Products/ProductList";
+
+// import Counters from "./Components/Counters";
+// import FindBtn from "./Components/FindBtn";
+// import RandomCount from "./Components/RandomCount";
+// import ShowEmail from "./Components/ShowEmail";
+// import ShowUsers from "./Components/ShowUsers";
+
+// const App = () => {
+//   const phoneNumber = () => {
+//     console.log("09358550075");
+//   };
+
+//   return (
+//     <div className="container">
+//       <h1>Hello React!</h1>
+//       <ShowEmail
+//         Email="milad.rastgoou@gmail.com"
+//         ShowPhoneNumber={phoneNumber}
+//       />
+//       <Counters />
+//       <ShowUsers />
+//       <RandomCount />
+//       <hr />
+//       <FindBtn />
+//     </div>
+//   );
+// };
+// export default App;

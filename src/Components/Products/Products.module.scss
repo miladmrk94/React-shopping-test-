@@ -1,0 +1,38 @@
+.container {
+  color: rgb(250, 242, 226);
+  background-color: rgb(70, 70, 70);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 160px;
+  margin: 1rem;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  text-align: center;
+
+  .box {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    .btn {
+      border: none;
+      outline: none;
+      padding: 0.3rem;
+      border-radius: 1rem;
+      margin: 0 0.3rem 0 0.3rem;
+      background-color: rgb(27, 18, 18);
+    }
+    .btnPuls {
+      color: rgb(67, 184, 67);
+    }
+    .btnMinus {
+      color: rgb(243, 64, 64);
+    }
+  }
+  input {
+    border-radius: 0.5rem;
+    border: none;
+    padding: 0.3rem;
+  }
+}
